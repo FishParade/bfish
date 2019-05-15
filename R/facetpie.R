@@ -19,7 +19,8 @@ facetpie <- function(df, facetvar, fillvar, pie_title, pie_subtitle, pie_fill) {
     group_by(!!sym(facetvar)) %>%
     mutate(num_facet = sum(num_grp)) %>%
     ungroup() %>%
-    mutate(frac_grp = num_grp / num_facet)
+    mutate(frac_grp = num_grp / num_facet,
+           facetvar = fct_reorder(!!sym(facetvar), num_facet))
 
   tempdf %>%
     ggplot(aes(x = factor(1), y = frac_grp ,fill = !!sym(fillvar))) +
