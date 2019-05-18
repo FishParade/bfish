@@ -1,0 +1,23 @@
+# Named character vector to convert protein sequences into a form capable of ignoring gaps.
+gapletters <- c(
+  "A" = "A-*",
+  "C" = "C-*",
+  "D" = "D-*",
+  "E" = "E-*",
+  "F" = "F-*",
+  "G" = "G-*",
+  "H" = "H-*",
+  "I" = "I-*",
+  "K" = "K-*",
+  "L" = "L-*",
+  "M" = "M-*",
+  "N" = "N-*",
+  "P" = "P-*",
+  "Q" = "Q-*",
+  "R" = "R-*",
+  "S" = "S-*",
+  "T" = "T-*",
+  "V" = "V-*",
+  "W" = "W-*",
+  "Y" = "Y-*"
+)
