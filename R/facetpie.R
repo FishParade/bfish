@@ -20,7 +20,7 @@ facetpie <- function(df, facetvar, fillvar, pie_title, pie_subtitle, pie_fill) {
   tempdf %>%
     ggplot(aes(x = factor(1), y = frac_grp ,fill = temp_fillvar)) +
     geom_bar(width = 1, stat = "identity") + coord_polar(theta = "y", start = 0) +
-    geom_text(aes(x = 1, label = glue::glue("{num_grp} \n ({percent(frac_grp, 2)})"),
+    geom_text(aes(x = 1, label = glue::glue("{num_grp} \n ({scales::percent(frac_grp, 2)})"),
                   fontface = "bold"),
               position = position_stack(vjust = 0.5), size = 3) +
     labs(
