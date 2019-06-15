@@ -1,14 +1,17 @@
 # Function for a set of pairwise alignments of sequences in two dataframes.
 # Dataframes need solumns named "sequence" and "uniparc_id"
 
-multi_pairwise_aln <- function(pattern_df, subject_df, sub_matrix = NULL) {
-  if (is.null(sub_matrix)) {
-    
-  } else {
-    if (!sub_matrix %in% c("BLOSUM45", "BLOSUM50", "BLOSUM62", "BLOSUM80", "BLOSUM100")) {
-      return(cat("Invalid substitution matrix!"))
-    }
-    }
+multi_pairwise_aln <- function(pattern_df, subject_df, pid_alg = "PID1", sub_matrix = "BLOSUM62") {
+
+  # Check if valid substition matrix.
+  if (!sub_matrix %in% c("BLOSUM45", "BLOSUM50", "BLOSUM62", "BLOSUM80", "BLOSUM100")) {
+    return(cat("Invalid substitution matrix!"))
+  }
+
+  # Check if valid %ID algorithm.
+  if (!pid_alg %in% c("PID1", "PID2", "PID3", "PID4")) {
+    return(cat("Invalid %ID algorithm!"))
+  }
   
   # Grab names of dataframes (for use in naming the .csv )
   pattern_df_name  <- deparse(substitute(pattern_df))
@@ -36,7 +39,7 @@ multi_pairwise_aln <- function(pattern_df, subject_df, sub_matrix = NULL) {
   for (i in seq_along(subject_seq)) {
     alnlist[[i]] <- pairwiseAlignment(pattern_seq, subject_seq[i], 
                                       substitutionMatrix = sub_matrix)
-    pidlist[[i]] <- pid(alnlist[[i]])
+    pidlist[[i]] <- pid(alnlist[[i]], type = pid_alg)
     names(pidlist[[i]]) <- pattern_names
   }
   
@@ -90,16 +93,9 @@ multi_pairwise_aln <- function(pattern_df, subject_df, sub_matrix = NULL) {
     distinct(pattern_uniparc, .keep_all = TRUE)
   
   # Write the .csv files!
-  if (is.null(sub_matrix)) {
     write_csv(full_alndf,
-              glue("pairwise-distmat/pairwisealn_{subj_df_name}_none.csv"))
+              glue("pairwise-distmat/pairwisealn_{subj_df_name}_{sub_matrix}_{pid_alg}.csv"))
     write_csv(alndf_summary,
-              glue("pairwise-distmat/pairwisealn_summary_{subj_df_name}_none.csv"))
-  } else {
-    write_csv(full_alndf,
-              glue("pairwise-distmat/pairwisealn_{subj_df_name}_{sub_matrix}.csv"))
-    write_csv(alndf_summary,
-              glue("pairwise-distmat/pairwisealn_summary_{subj_df_name}_{sub_matrix}.csv"))
-  }
+              glue("pairwise-distmat/pairwisealn_summary_{subj_df_name}_{sub_matrix}_{pid_alg}.csv"))
 
 }
