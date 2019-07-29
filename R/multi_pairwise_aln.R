@@ -1,7 +1,7 @@
 # Function for a set of pairwise alignments of sequences in two dataframes.
 # Dataframes need columns named "sequence" and "uniparc_id"
 
-multi_pairwise_aln2 <- function(pattern_df, subject_df, pid_alg = "PID1", sub_matrix = "BLOSUM62") {
+multi_pairwise_aln <- function(pattern_df, subject_df, pid_alg = "PID1", sub_matrix = "BLOSUM62") {
 
   # Check if valid substition matrix.
   if (!sub_matrix %in% c("BLOSUM45", "BLOSUM50", "BLOSUM62", "BLOSUM80", "BLOSUM100")) {
