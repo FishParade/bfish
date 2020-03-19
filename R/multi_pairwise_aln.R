@@ -88,7 +88,7 @@ multi_pairwise_aln <- function(pattern_df, subject_df, pid_alg = "PID1", sub_mat
   
   # Summarize the full dataframe by highest %ID alignment for each sequence
   alndf_summary <- full_alndf %>% 
-    filter(pid != 100) %>% 
+    # filter(pid != 100) %>% 
     group_by(pattern_uniparc) %>% 
     filter(pid == max(pid)) %>% 
     distinct(pattern_uniparc, .keep_all = TRUE)
