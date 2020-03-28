@@ -95,8 +95,8 @@ multi_pairwise_aln <- function(pattern_df, subject_df, pid_alg = "PID1", sub_mat
   
   # Write the .csv files!
     write_csv(full_alndf,
-              glue("pairwise-distmat/pairwisealn_{subj_df_name}_{sub_matrix}_{pid_alg}.csv"))
+              str_glue("pairwise-distmat/pairwisealn_{subj_df_name}_{sub_matrix}_{pid_alg}.csv"))
     write_csv(alndf_summary,
-              glue("pairwise-distmat/pairwisealn_summary_{subj_df_name}_{sub_matrix}_{pid_alg}.csv"))
+              str_glue("pairwise-distmat/pairwisealn_summary_{subj_df_name}_{sub_matrix}_{pid_alg}.csv"))
 
 }
