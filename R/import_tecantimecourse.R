@@ -1,5 +1,5 @@
 # Function for importing Tecan plate reader .xlsx files matching a particular filename suffix, e.g. "_test-assay.xlsx"
-import_tecandata <- function(tecan_path = "./rawdata/uv-vis/", tecan_pattern = ".xlsx") {
+import_tecantimecourse <- function(tecan_path = "./rawdata/uv-vis/", tecan_pattern = ".xlsx") {
   
     file_list <- list.files(path = tecan_path, pattern = str_c("*", tecan_pattern))
     assay_rawdf <- list()
