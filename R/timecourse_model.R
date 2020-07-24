@@ -1,4 +1,3 @@
-
 # Function for modeling timecourses.
 timecourse_model <- function(datadf, exptdf, 
                              assay_vol = 0.2, path_length = 0.53, 
