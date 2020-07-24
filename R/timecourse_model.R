@@ -2,9 +2,6 @@
 timecourse_model <- function(datadf, exptdf, 
                              assay_vol = 0.2, path_length = 0.53, 
                              r2_thresh = 0.94, slope_thresh = 0.002) {
-
-  datadf <- abtsdata_data
-  exptdf <- abtsexpt
   
   # Replicate measurements at the same timepoint are averaged.
   datadf_avg <- datadf %>% 
